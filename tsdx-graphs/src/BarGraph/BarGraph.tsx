@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import './BarGraph.css';
+import { YAxisMarker, YAxisMarkerWithAxisLabel } from "./components/YAxisMarker";
 
 export type BarGraphEntry = {
     value: number;
@@ -20,26 +21,7 @@ export interface BarGraphProps {
     yLabel: string;
 }
 
-function createYAxisMarker(label: number) {
-    return (
-        <div className="bar-graph-y-axis-marker" data-testid="y-axis-marker-with-label" key={`y-axis-${label}`}>
-            <div className="bar-graph-y-axis-marker-line"></div>
-            <div className="bar-graph-y-axis-marker-label">{label}</div>
-        </div>
-    )
-}
 
-function createYAxisMarkerWithLabel(label: number, axisLabel: string) {
-    return (
-        <div className="bar-graph-y-axis-marker" data-testid="y-axis-marker-with-label" key={`y-axis-${label}`}>
-            <div className="bar-graph-y-axis-marker-line"></div>
-            <div className="bar-graph-y-axis-marker-label">{label}</div>
-            <div className="bar-graph-y-axis-label">
-                {axisLabel}
-            </div>
-        </div>
-    )
-}
 
 export function getYAxisMarkings(minVal: number, maxVal: number, yLabel: string) {
     let markings = [];
@@ -47,9 +29,17 @@ export function getYAxisMarkings(minVal: number, maxVal: number, yLabel: string)
     if (maxVal <= 10) {
         for (let i = maxVal; i > (minVal); i--) {
             if (i - 1 > minVal) {
-                markings.push(createYAxisMarker(i));
+                markings.push(<YAxisMarker label={i} />);
             } else {
-                markings.push(createYAxisMarkerWithLabel(i, yLabel))
+                markings.push(<YAxisMarkerWithAxisLabel label={i} axisLabel={yLabel} />)
+            }
+        }
+    } else if (maxVal > 10) {
+        for (let i = maxVal; i > (minVal); i = i - 5) {
+            if (i - 5 > minVal) {
+                markings.push(<YAxisMarker label={i} />);
+            } else {
+                markings.push(<YAxisMarkerWithAxisLabel label={i} axisLabel={yLabel} />)
             }
         }
     }
@@ -59,16 +49,12 @@ export function getYAxisMarkings(minVal: number, maxVal: number, yLabel: string)
 
 /** This is a test again */
 export const BarGraph = ({ minValue, maxValue, entries, xLabel, yLabel }: BarGraphProps) => {
-    /** This is a test */
-    const minValMemo = useMemo(() => {
-        if (minValue) {
-            return minValue;
-        }
-        return 0;
-    }, [minValue])
 
     const maxValMemo = useMemo(() => {
         if (maxValue) {
+            if (maxValue > 10 && maxValue % 5 !== 0) {
+                maxValue = maxValue + 5 - (maxValue % 5)
+            }
             return maxValue;
         }
         let maxFoundVal = 0;
@@ -78,8 +64,21 @@ export const BarGraph = ({ minValue, maxValue, entries, xLabel, yLabel }: BarGra
                 maxFoundVal = entry.value;
             }
         })
+
+        if (maxFoundVal > 10 && maxFoundVal % 5 !== 0) {
+            maxFoundVal = maxFoundVal + 5 - (maxFoundVal % 5)
+        }
         return maxFoundVal;
     }, [maxValue, entries]);
+
+
+    /** This is a test */
+    const minValMemo = useMemo(() => {
+        if (minValue && (!maxValue || maxValue <= 10)) {
+            return minValue;
+        }
+        return 0;
+    }, [minValue, maxValue])
 
     const memoEntries = useMemo(() => entries.map(entry => {
         console.log((entry.value - minValMemo), (maxValMemo - minValMemo), (entry.value - minValMemo) / (maxValMemo - minValMemo))
@@ -92,18 +91,20 @@ export const BarGraph = ({ minValue, maxValue, entries, xLabel, yLabel }: BarGra
         )
     }), [entries, maxValMemo, minValMemo]);
 
+    const yAxisMarkings = useMemo(() => getYAxisMarkings(minValMemo, maxValMemo, yLabel), [minValMemo, maxValMemo, yLabel]);
+
     return (
         <div className="bar-graph-container">
             <div className="bar-graph-x-container">
                 <div className="bar-graph-y-container">
                     <div className="bar-graph-y-axis">
-                        <div className="bar-graph-y-axis-markings">
-                            {getYAxisMarkings(minValMemo, maxValMemo, yLabel)}
-                        </div>
 
-                        {/* <div className="bar-graph-y-axis-label">
-                            {yLabel}
-                        </div> */}
+                        <div className="bar-graph-y-axis-label">
+                            <div className="bar-graph-y-label-rotation">{yLabel}</div>
+                        </div>
+                        <div className="bar-graph-y-axis-markings">
+                            {yAxisMarkings}
+                        </div>
                     </div>
 
                     <div className="bar-graph-data-container">

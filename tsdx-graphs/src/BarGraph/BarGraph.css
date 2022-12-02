@@ -19,7 +19,6 @@
 .bar-graph-y-axis {
     flex-shrink: 1;
     display: flex;
-    flex-direction: column;
     padding-left: 4px;
     width: 60px;
     text-align: center;
@@ -28,6 +27,17 @@
 .bar-graph-y-axis-label {
     flex-shrink: 1;
     text-align: left;
+    position: relative;
+    width: 28px;
+}
+
+.bar-graph-y-label-rotation {
+    transform: rotate(90deg);
+    width: 60px;
+    position: absolute;
+    top: 38%;
+    left: 9px;
+    transform-origin: left;
 }
 
 .bar-graph-y-axis-markings {
