@@ -1,0 +1,82 @@
+.bar-graph-container {
+    width: 500px;
+    height: 300px;
+    background: gray;
+    display: flex;
+}
+
+.bar-graph-y-container {
+    flex: 1;
+    display: flex;
+    align-content: flex-end;
+    flex-direction: row;
+}
+
+.bar-graph-y-axis {
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 4px;
+    width: 60px;
+    text-align: center;
+}
+
+.bar-graph-y-axis-label {
+    flex-shrink: 1;
+}
+
+.bar-graph-y-axis-markings {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bar-graph-y-axis-marker-line {
+    border-top: 1px solid black;
+    width: 50%;
+    align-self: flex-end;
+}
+
+.bar-graph-y-axis-marker {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bar-graph-y-axis-marker-label {
+    flex: 1;
+}
+
+.bar-graph-x-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bar-graph-x-axis {
+    flex-shrink: 1;
+}
+
+.bar-graph-x-axis-label {
+    display: flex;
+    justify-content: center;
+}
+
+.bar-graph-data-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    color: black;
+}
+
+.bar-graph-data-entry {
+    display: flex;
+    align-items: flex-end;
+}
+
+.bar-graph-data-entry-bar {
+    background-color: green;
+    width: 75px;
+    text-align: center;
+}

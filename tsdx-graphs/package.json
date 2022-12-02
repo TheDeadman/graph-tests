@@ -1,0 +1,81 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "storybook": "start-storybook -p 6006",
+    "storybook-docs": "start-storybook --docs --no-manager-cache",
+    "build-storybook": "build-storybook"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "tsdx-graphs",
+  "author": "Alex Lindemann",
+  "module": "dist/tsdx-graphs.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/tsdx-graphs.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/tsdx-graphs.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@mdx-js/loader": "^2.1.5",
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@storybook/addon-docs": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/addons": "^6.5.13",
+    "@storybook/react": "^6.5.13",
+    "@testing-library/react": "^13.4.0",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "babel-loader": "^9.1.0",
+    "husky": "^8.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "size-limit": "^8.1.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
+    "react-syntax-highlighter": "^15.5.0",
+    "rollup-plugin-postcss": "^4.0.2"
+  }
+}

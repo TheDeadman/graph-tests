@@ -1,0 +1,40 @@
+<!-- BarGraph.stories.mdx -->
+
+import {
+  Canvas,
+  Meta,
+  Story,
+  ArgsTable,
+  PRIMARY_STORY,
+} from '@storybook/addon-docs';
+
+import { BarGraph } from './BarGraph';
+
+<Meta
+  argTypes={{
+    entries: {
+      defaultValue: [
+        { label: 'Entry One', value: 1 },
+        { label: 'Entry Two', value: 4 },
+      ],
+    },
+    xLabel: {
+      defaultValue: 'X AXIS',
+    },
+    yLabel: {
+      defaultValue: 'Y AXIS',
+    },
+  }}
+  title="BarGraph"
+  component={BarGraph}
+/>
+
+export const Template: Story<BarGraphProps> = args => <BarGraph {...args} />;
+
+# BarGraph
+
+With `MDX`, we can define a story for `BarGraph` right in the middle of our
+Markdown documentation.
+
+<ArgsTable of={BarGraph} />
+<Story name="Default">{Template.bind({})}</Story>

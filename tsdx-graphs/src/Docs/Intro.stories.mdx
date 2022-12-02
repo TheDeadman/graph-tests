@@ -1,0 +1,25 @@
+<!-- MyComponent.stories.mdx -->
+
+import { Meta } from '@storybook/addon-docs';
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+import imageFile from './assets/storybookjs.png';
+
+<Meta title="Intro" />
+
+# Storybook example
+
+This is an example of using storybook to document a component library. You will find live examples of the components that can be edited on the fly. We can also include additional documentation and links to other sites.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<br />
+<br />
+<img src={imageFile} alt="storybook logo" />
+
+<!-- The usage of this "Component" is intentional to enable react-syntax-highlighter's own highlighter -->
+
+export const Component = () => {
+  return <SyntaxHighlighter />;
+};

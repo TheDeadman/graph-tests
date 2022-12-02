@@ -1,0 +1,44 @@
+<!-- MyComponent.stories.mdx -->
+
+import { Meta } from '@storybook/addon-docs';
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+
+import imageFile from './assets/storybookjs.png';
+
+<Meta title="Installation" />
+
+# Installing the Library
+
+In order to use the component library in your react project, install with the following command.
+
+`npm install --save our-graph-component-library`
+
+After it has been installed, you can use the components in your code by importing them like any other react component.
+
+```js
+import { BarGraph, BarGraphProps } from './BarGraph';
+
+...
+
+<BarGraph
+  entries={[
+    {
+      label: 'Entry One',
+      value: 1
+    },
+    {
+      label: 'Entry Two',
+      value: 4
+    }
+  ]}
+  xLabel="X AXIS"
+  yLabel="Y AXIS"
+/>
+```
+
+<!-- The usage of this "Component" is intentional to enable react-syntax-highlighter's own highlighter -->
+
+export const Component = () => {
+  return <SyntaxHighlighter />;
+};
