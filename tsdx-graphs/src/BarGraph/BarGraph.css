@@ -3,6 +3,10 @@
     height: 300px;
     background: gray;
     display: flex;
+    border: thin solid black;
+    border-radius: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .bar-graph-y-container {
@@ -23,17 +27,19 @@
 
 .bar-graph-y-axis-label {
     flex-shrink: 1;
+    text-align: left;
 }
 
 .bar-graph-y-axis-markings {
     flex: 1;
     display: flex;
     flex-direction: column;
+    width: 500px;
 }
 
 .bar-graph-y-axis-marker-line {
     border-top: 1px solid black;
-    width: 50%;
+    width: calc(100% - 35px);
     align-self: flex-end;
 }
 
@@ -41,10 +47,16 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    z-index: 5;
+}
+
+.bar-graph-y-axis-marker:first-child .bar-graph-y-axis-marker-line {
+    border-top: none;
 }
 
 .bar-graph-y-axis-marker-label {
     flex: 1;
+    width: 50px;
 }
 
 .bar-graph-x-container {
